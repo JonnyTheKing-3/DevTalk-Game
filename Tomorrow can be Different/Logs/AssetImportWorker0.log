@@ -196,3 +196,12 @@ Start importing Assets/Main.unity using Guid(1f838eb4c5a6d9f40a3bdcfccde766f3) I
  -> (artifact id: '4f52816450e8c7884f5735560fb2d852') in 0.051160 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 410.996736 seconds.
+  path: Assets/Main.unity
+  artifactKey: Guid(1f838eb4c5a6d9f40a3bdcfccde766f3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Main.unity using Guid(1f838eb4c5a6d9f40a3bdcfccde766f3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '285e57c6e7141c26a9ce848aae3dee41') in 0.021856 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
