@@ -47,8 +47,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     public Transform orientation;
 
-    float horizontalInput;
-    float verticalInput;
+    public float horizontalInput;
+    public float verticalInput;
 
     public Vector3 moveDirection;
 
