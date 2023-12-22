@@ -5,17 +5,16 @@ using UnityEngine;
 public class Dashing : MonoBehaviour
 {
     [Header("References")] 
-    public Rigidbody rb;
-    public PlayerMovementAdvanced pm;
+    private Rigidbody rb;
+    private PlayerMovementAdvanced pm;
     private PowerUpsHandler DashKey;
-
     
-    
+    [Header("Dash Settings")]
     public float dashForce;
     public float dashDuration;
     public bool dashing = false;
 
-    public string PowerUpName = "Dashing";
+    public bool OneTimeUse = true;
     
     // Direction to dash to
     private Vector3 dashDirection;
@@ -31,6 +30,7 @@ public class Dashing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // When to Dash
         if (Input.GetKeyDown(DashKey.KeyForPowerUp))
         {
             dashing = true;
@@ -57,21 +57,30 @@ public class Dashing : MonoBehaviour
             rb.AddForce(pm.moveDirection * dashForce, ForceMode.Force); 
          }
          
+         // Stop dash after dashDuration seconds pass
          Invoke(nameof(StopDash), dashDuration);
     }
 
     void StopDash()
     {
+        /*
+         * If stop dash is called, but the player is still in the air (in other words
+         * if the player dashed and is in the air by the time the dash is supposed to stop),
+         * keep dashing until we hit the ground
+         */
         if (dashing && !pm.grounded)
         {
             dashing = true;
         }
-        else
+        else // Otherwise, stop the dash
         {
             dashing = false;
-            
-            // Turn off dash mechanic because it's a one time power up. Might change...
-            gameObject.GetComponent<Dashing>().enabled = false;
+
+            if (OneTimeUse)
+            {
+                // Turn off mechanic if it's a one time power up
+                gameObject.GetComponent<Dashing>().enabled = false;
+            }
         }
 
         

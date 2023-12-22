@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DoubleJump : MonoBehaviour
 {
+    // STILL WORKING ON THIS SCRIPT...
     private PlayerMovementAdvanced pm;
     private PowerUpsHandler DJumpKey;
     private Rigidbody rb;

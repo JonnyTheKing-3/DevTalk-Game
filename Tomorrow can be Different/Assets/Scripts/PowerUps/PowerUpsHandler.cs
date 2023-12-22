@@ -7,25 +7,24 @@ using UnityEngine;
 
 public class PowerUpsHandler : MonoBehaviour
 {
-
     private PlayerMovementAdvanced pm;
     public KeyCode KeyForPowerUp = KeyCode.O;
     private string powerName;
+    
     void Start()
     {
         pm = GetComponent<PlayerMovementAdvanced>();
     }
+    
+    // If the player touches an object, check if its a PowerUp
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.layer);
-        Debug.Log(other.gameObject.tag);
-        
         if (other.gameObject.CompareTag("PowerUp"))
         {
+            // If it is a PowerUp, check which it is and turn on the power
             powerName = other.gameObject.name;
-            Debug.Log("power name: " + powerName);
 
-            if (powerName == "Dash")
+            if (powerName == "Dash Power Up")
             {
                 pm.GetComponent<Dashing>().enabled = true;
             }
