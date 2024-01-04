@@ -28,7 +28,7 @@ public class PowerUpsHandler : MonoBehaviour
             {
                 pm.GetComponent<Dashing>().enabled = true;
             }
-            else if (powerName == "DoubleJump")
+            else if (powerName == "DoubleJump power up")
             {
                 pm.GetComponent<DoubleJump>().enabled = true;
             }

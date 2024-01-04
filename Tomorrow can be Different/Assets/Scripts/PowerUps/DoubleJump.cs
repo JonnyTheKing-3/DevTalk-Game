@@ -4,26 +4,36 @@ using UnityEngine;
 
 public class DoubleJump : MonoBehaviour
 {
-    // STILL WORKING ON THIS SCRIPT...
+    [Header("Jump attributes")] 
+    public float jumpForce;
+    [Space] 
+    public bool OneTimeUse = false;
+    
+    [Header("References")]
     private PlayerMovementAdvanced pm;
     private PowerUpsHandler DJumpKey;
     private Rigidbody rb;
     
-    // Start is called before the first frame update
+    
+
     void Start()
     {
         pm = GetComponent<PlayerMovementAdvanced>();
         rb = GetComponent<Rigidbody>();
         DJumpKey = GetComponent<PowerUpsHandler>();
     }
-
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetKeyDown(DJumpKey.KeyForPowerUp))
         {
             // Do a type of jump
-            gameObject.GetComponent<DoubleJump>().enabled = false;
+            rb.velocity += Vector3.up * jumpForce;
+
+            // disable if it's only a one time use
+            if (OneTimeUse)
+            {
+                gameObject.GetComponent<DoubleJump>().enabled = false;
+            }
         }
     }
 }
