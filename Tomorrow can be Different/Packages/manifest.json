@@ -1,8 +1,10 @@
 {
   "dependencies": {
+    "com.prenominal.realtimecsg": "file:C:/Program Files/Unity/Hub/Editor/2022.3.15f1/Editor/Data/Resources/PackageManager/realtime-CSG-for-unity-master",
     "com.unity.cinemachine": "2.9.7",
     "com.unity.collab-proxy": "2.2.0",
     "com.unity.feature.development": "1.0.1",
+    "com.unity.terrain-tools": "5.0.4",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.timeline": "1.7.6",
     "com.unity.ugui": "1.0.0",
