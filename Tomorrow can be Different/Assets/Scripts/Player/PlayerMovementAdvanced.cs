@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovementAdvanced : MonoBehaviour
@@ -33,7 +34,14 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode sprintKey = KeyCode.LeftShift;
     public KeyCode crouchKey = KeyCode.LeftControl;
+    public KeyCode QuickStepLeft = KeyCode.Q;
+    public KeyCode QuickStepRight = KeyCode.E;
 
+    [Header("QuickStep")] 
+    public float stepDistance;
+    public float QuickstepCooldown = .25f;
+    public bool readyToQuickStep = true;
+    
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
@@ -43,15 +51,12 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float maxSlopeAngle;
     private RaycastHit slopeHit;
     public bool exitingSlope;
-    
+    [Space]
 
     public Transform orientation;
-
     public float horizontalInput;
     public float verticalInput;
-
     public Vector3 moveDirection;
-
     Rigidbody rb;
     public ConstantForce cf;
     
@@ -114,6 +119,24 @@ public class PlayerMovementAdvanced : MonoBehaviour
             Jump();
 
             Invoke(nameof(ResetJump), jumpCooldown);
+        }
+        
+        // Quick step left/right
+        if (Input.GetKey(QuickStepLeft) && readyToQuickStep)
+        {
+            readyToQuickStep = false;
+
+            QuickStep2Left();
+
+            Invoke(nameof(QuickStepReset), QuickstepCooldown);
+        }
+        if (Input.GetKey(QuickStepRight) && readyToQuickStep)
+        {
+            readyToQuickStep = false;
+
+            QuickStep2Right();
+
+            Invoke(nameof(QuickStepReset), QuickstepCooldown);
         }
 
         // start crouch
@@ -284,6 +307,20 @@ public class PlayerMovementAdvanced : MonoBehaviour
         readyToJump = true;
 
         exitingSlope = false;
+    }
+
+    private void QuickStep2Left()
+    {
+        rb.AddForce(orientation.right * -stepDistance, ForceMode.Impulse);
+    } 
+    private void QuickStep2Right()
+    {
+        rb.AddForce(orientation.right * stepDistance, ForceMode.Impulse);
+    }
+
+    private void QuickStepReset()
+    {
+        readyToQuickStep = true;
     }
 
     public bool OnSlope()
